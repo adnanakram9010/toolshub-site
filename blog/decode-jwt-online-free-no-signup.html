@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Decode a JWT Online | ToolsHub</title>
+<meta name="description" content="Decode any JWT online free — read its header, payload and expiry in seconds, no signup. Steps, a real decoded example, and 5 mistakes to avoid.">
+<meta property="og:title" content="How to Decode a JWT Online | ToolsHub">
+<meta property="og:description" content="Read any token's header, payload and expiry in seconds — free, no signup, right in your browser.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ToolsHub">
+<meta property="og:image" content="https://toolfreely.risingnest.com/assets/blog/decode-jwt-online-free-no-signup.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it free to decode a JWT online?","acceptedAnswer":{"@type":"Answer","text":"Yes. ToolsHub's JWT Decoder is free with no signup — paste a token and read its header, payload and expiry in seconds."}},{"@type":"Question","name":"Does decoding a JWT verify its signature?","acceptedAnswer":{"@type":"Answer","text":"No. Decoding only reads the token; the signature is shown as it stands, unverified, so a decoded payload is not proof the token is genuine. Verification needs the secret key, on your own server."}},{"@type":"Question","name":"What does the exp claim in a JWT mean?","acceptedAnswer":{"@type":"Answer","text":"The exp claim is the expiry time as a Unix timestamp in seconds. The decoder converts it to a date and says if the token is still valid or expired — the sample token expires on 1 January 2030."}},{"@type":"Question","name":"Is it safe to paste a JWT into an online decoder?","acceptedAnswer":{"@type":"Answer","text":"With ToolsHub's decoder, yes for test tokens — everything runs in your browser and the token is never uploaded. Still, never paste a production token with real secrets into any website; use a test token or the sample."}}]}
+</script>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=20261008">
+</head>
+<body>
+<header class="site-header"><div class="wrap header-inner">
+<a class="brand" href="../index.html"><span class="brand-badge">T</span><span class="brand-two"><span class="t1">Tools</span><span class="t2">Hub</span></span></a>
+<nav class="main-nav">
+<a href="../index.html#popular">Popular</a><a href="../index.html#image-tools">Image</a><a href="../index.html#pdf-tools">PDF</a><a href="../index.html#text-tools">Text</a><a href="../index.html#generators">Generators</a><a href="../index.html#calculators">Calculators</a><a href="../index.html#developer-tools">Developer</a><a href="index.html">Blog</a>
+</nav>
+<div class="nav-search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="navSearch" type="text" placeholder="Search tools…" autocomplete="off"></div>
+</div></header>
+<script>document.getElementById('navSearch').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.value.trim())location.href='../index.html?q='+encodeURIComponent(e.target.value.trim())});</script>
+<main class="wrap">
+<nav class="breadcrumb"><a href="../index.html">Home</a> › <a href="index.html">Blog</a> › Decode JWT Online</nav>
+<div class="tool-hero"><h1>How to Decode a JWT Online</h1><p class="sub">See exactly who a token is for, what it allows, and when it expires — in seconds, free, with no signup.</p><p class="post-date">November 14, 2026 · 6 min read</p></div>
+<!-- ADSENSE: content-page-top -->
+<section class="panel"><div class="prose">
+<p><img src="../assets/blog/decode-jwt-online-free-no-signup.jpg" alt="A glowing key unlocking a JWT token's three segments into a readable JSON panel" style="width:100%;border-radius:12px"></p>
+<p>To decode a JWT online, paste the token into ToolsHub's <a href="../jwt-decoder.html">JWT Decoder</a> and click <strong>Decode</strong>. In a second you get the header and payload as readable JSON, the signature as it stands, and — with an expiry claim — whether the token is still valid or already expired. It is free, needs no signup, and the token never leaves your browser.</p>
+<p>JSON Web Tokens show up everywhere: login sessions, APIs, single sign-on. They look like one long meaningless string, but they are structured — three parts joined by dots, each holding plain information once decoded. This guide shows you how to read one — and the mistake that catches almost everyone: thinking "decoded" means "verified".</p>
+<h3>What a JWT actually is</h3>
+<p>A JWT has exactly three parts, separated by two dots: <strong>header.payload.signature</strong>. Each part is base64url-encoded: a URL-safe base64 using <code>-</code> and <code>_</code> instead of <code>+</code> and <code>/</code>, with no <code>=</code> padding. Decoding only reverses that encoding: a JWT is encoded, not encrypted, so anyone holding the token can read its payload.</p>
+<ul>
+<li><strong>Header</strong> — two fields: <code>alg</code>, the signing algorithm (for example HS256), and <code>typ</code>, "JWT".</li>
+<li><strong>Payload</strong> — the claims: who it is for (<code>sub</code>), what they may do (<code>admin</code>, <code>role</code>), when issued (<code>iat</code>), when it expires (<code>exp</code>). This is the part you need to read.</li>
+<li><strong>Signature</strong> — the proof of who issued the token. Only the secret key can check it, so a decoder without the key can show it but not verify it.</li>
+</ul>
+<p>The tool warns: <strong>"The signature is not verified. This tool only decodes the token — it does not check who signed it."</strong> A decoded payload is a claim, not proof: anyone can write a token saying <code>"admin": true</code>; only a verified signature makes it trustworthy.</p>
+<h3>Decode a JWT in 5 steps</h3>
+<ol>
+<li><strong>Open the <a href="../jwt-decoder.html">JWT Decoder</a></strong> — it runs entirely in your browser, so your token is never uploaded.</li>
+<li><strong>Paste the whole token into the "JWT token" box</strong> — three parts separated by dots. Or click <strong>Use sample token</strong>.</li>
+<li><strong>Click Decode.</strong> The tool splits the token on the dots and decodes the first two parts into JSON.</li>
+<li><strong>Read the three boxes:</strong> Header and Payload as pretty-printed JSON, Signature as the raw third part — or "(empty)" if missing.</li>
+<li><strong>Check the expiry note:</strong> with an <code>exp</code> claim, the tool converts it to a date and says whether the token is still valid or expired. Click <strong>Clear</strong> to start over.</li>
+</ol>
+<p>If the token is malformed, the tool says so plainly: an empty box gives "Please paste a JWT token first"; a token without exactly three parts gives "A JWT must have exactly 3 parts separated by dots". An invalid part gets its own error naming the header or the payload.</p>
+<h3>A worked example: decoding the sample token</h3>
+<p>Click <strong>Use sample token</strong> and the tool fills in this 195-character token:</p>
+<p><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxODkzNDU2MDAwfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></p>
+<p>The header:</p>
+<p><code>{ "alg": "HS256", "typ": "JWT" }</code></p>
+<p>The header JSON is 27 characters, and 27 bytes encode to exactly 36 base64url characters (27 ÷ 3 × 4 = 36). HS256 means HMAC with SHA-256.</p>
+<p>The payload:</p>
+<p><code>{ "sub": "1234567890", "name": "John Doe", "admin": true, "iat": 1516239022, "exp": 1893456000 }</code></p>
+<p>Claim by claim: the subject (<code>sub</code>) is user "1234567890", the name is John Doe, admin is true. The two numbers are Unix timestamps in seconds: <code>iat</code> 1516239022 is 18 January 2018, 01:30:22 UTC (issued), and <code>exp</code> 1893456000 is 1 January 2030, 00:00:00 UTC (expires). The payload JSON is 85 characters, encoding to 114 base64url characters. From 13 November 2026 that expiry is 1,144 days away — the tool reports the token as still valid. The 43-character signature is exactly what 32 bytes encode to — 256 bits, matching HS256.</p>
+<h3>Header vs payload vs signature</h3>
+<table>
+<tr><th>Part</th><th>What it holds</th><th>What the tool shows</th><th>Can you trust it alone?</th></tr>
+<tr><td>Header</td><td>Algorithm and token type</td><td>Pretty-printed JSON</td><td>No</td></tr>
+<tr><td>Payload</td><td>Claims: who, what, when</td><td>Pretty JSON, plus an expiry check</td><td>No</td></tr>
+<tr><td>Signature</td><td>Proof of who issued it</td><td>The raw string, as pasted</td><td>Only when verified</td></tr>
+</table>
+<p>The tool never claims a token is genuine — verification needs the secret key, which a browser decoder should never ask for.</p>
+<h3>A second example: an expired token</h3>
+<p>Take a token with this payload: <code>{"sub": "demo-user", "role": "editor", "exp": 1700000000}</code>. Its <code>exp</code>, 1700000000, is 14 November 2023, 22:13:20 UTC — already past. Paste it and click Decode: the header and payload decode normally, but the note reads that the token is <strong>EXPIRED</strong>, with the expiry date shown. The token is 151 characters (segments of 36, 70 and 43) and its signature is a placeholder, since the tool never verifies signatures. That is how you catch a stale session token.</p>
+<h3>5 mistakes that make JWT decoding go wrong</h3>
+<ul>
+<li><strong>Treating "decoded" as "verified".</strong> Decoding reads the token; verification proves who signed it. A payload saying <code>"admin": true</code> means nothing until the signature is checked — never grant access on a decoded payload alone.</li>
+<li><strong>Putting secrets in the payload.</strong> Base64url is reversible by anyone holding the token — encoding, not encryption. Passwords, API keys and personal data do not belong in a payload; if it must stay secret, keep it out of the token.</li>
+<li><strong>Ignoring the expiry claim — or trusting a token without one.</strong> A token with no <code>exp</code> never expires, so a leaked one works forever. Always check the expiry note; a missing <code>exp</code> is a problem, not a convenience.</li>
+<li><strong>Pasting production tokens into random decoders.</strong> Many decoders send your token to a server. Ours runs entirely in your browser, but the safe habit is the same: use test tokens, or the built-in sample token. Never paste a live token with real user data into an unchecked site.</li>
+<li><strong>Copying only part of the token.</strong> A JWT needs all three parts: copying just the middle segment, or dropping the signature, gives the "exactly 3 parts" error. Copy from the first character to the last, with no spaces or line breaks, and check both dots are present.</li>
+</ul>
+<h3>Frequently asked questions</h3>
+<p><strong>Is it free to decode a JWT online?</strong><br>Yes. ToolsHub's <a href="../jwt-decoder.html">JWT Decoder</a> is free with no signup — paste a token and read its header, payload and expiry in seconds.</p>
+<p><strong>Does decoding a JWT verify its signature?</strong><br>No. Decoding only reads the token; the signature is shown as it stands, unverified, so a decoded payload is not proof the token is genuine. Verification needs the secret key, on your own server.</p>
+<p><strong>What does the exp claim in a JWT mean?</strong><br>The <code>exp</code> claim is the expiry time as a Unix timestamp in seconds. The decoder converts it to a date and says if the token is still valid or expired — the sample token expires on 1 January 2030.</p>
+<p><strong>Is it safe to paste a JWT into an online decoder?</strong><br>With ToolsHub's decoder, yes for test tokens — everything runs in your browser and the token is never uploaded. Still, never paste a production token with real secrets into any website; use a test token or the sample.</p>
+<p><strong>Related tools:</strong> <a href="../jwt-decoder.html">JWT Decoder</a> · <a href="../base64-encoder-decoder.html">Base64 Encoder / Decoder</a> · <a href="../json-formatter.html">JSON Formatter</a> · <a href="../url-encoder-decoder.html">URL Encoder / Decoder</a></p>
+</div></section>
+</main>
+<!-- ADSENSE: content-page-bottom -->
+<footer class="site-footer"><div class="wrap">
+<div class="footer-grid">
+<div><a class="brand" href="../index.html" style="margin-bottom:10px"><span class="brand-badge">T</span><span class="brand-two"><span class="t1">Tools</span><span class="t2">Hub</span></span></a>
+<p style="font-size:14px;color:var(--muted);max-width:300px">Free online tools that run 100% in your browser. No signup, no uploads to servers, no cost — ever.</p></div>
+<div><h4>Top categories</h4><a href="../index.html#image-tools">Image Tools</a><a href="../index.html#pdf-tools">PDF Tools</a><a href="../index.html#text-tools">Text Tools</a><a href="../index.html#generators">Generators</a></div>
+<div><h4>More</h4><a href="../index.html#calculators">Calculators</a><a href="../index.html#converters">Converters</a><a href="../index.html#developer-tools">Developer Tools</a><a href="../index.html#time-tools">Time Tools</a><a href="index.html">Blog</a></div>
+</div>
+<div class="footer-bottom"><span>© 2026 ToolsHub — free forever.</span><span class="legal-links"><a href="../privacy-policy.html">Privacy Policy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></span><span>All tools run locally in your browser. Your files never leave your device.</span></div>
+</div></footer>
+</body>
+</html>
